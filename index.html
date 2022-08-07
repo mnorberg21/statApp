@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Golf Statistics Tracker </title>
+    
+    <!-- Resolves favicon 404 console log error -->
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+    <h2> Golf Statistics Tracker </h2>
+    <h2> Author: Matthew Norberg </h2> 
+
+    <button id="addScore">Add Score</button>
+    <script src = "js/table.js"></script>
+
+    <table id = "data">
+        <thead>
+            <tr>
+                <th scope = "col"> Date </th>
+                <th scope = "col"> Course </th>
+                <th scope = "col"> Score </th>
+                <th scope = "col"> Fairways </th>
+                <th scope = "col"> Greens in Regulation </th>
+                <th scope = "col"> 3+ Putts </th>
+            </tr>
+        </thead>
+        <tr>
+            <td> 8/5/2022 </td>
+            <td> Winchester Country Club </td>
+            <td> 75 </td>
+            <td> 11 </td>
+            <td> 14 </td>
+            <td> 0 </td>
+        </tr>
+    </table>
+
+    <form id="inputData" style = 'display:none'>
+        <input type = "text" id = "date" placeholder = "Enter date:"/>
+        <input type = "text" id = "course" placeholder = "Enter course:"/>
+        <input type = "text" id = "score" placeholder = "Enter score:"/>
+        <input type = "text" id = "fairways" placeholder = "Enter fairways:"/>
+        <input type = "text" id = "greens" placeholder = "Enter greens in regulation:"/>
+        <input type = "text" id = "threePutts" placeholder = "Enter 3+ putts:"/>
+    </form>
+
+    <button id="save" style = 'display:none'>Save Changes</button>
+
+</body>
+
+</html>
