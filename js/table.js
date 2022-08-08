@@ -45,17 +45,23 @@ const handleInput = (saveButton, newForm) => {
 addBtn.addEventListener('click', () => {
   // Collect references to HTML features
   const saveButton = document.getElementById('save');
-  const newForm = document.getElementById('inputData');
+  // const newForm = document.getElementById('inputData');
+  const formRow = document.getElementById('formRow');
+
+  // Show the form row
+  if (formRow.style.display === 'none') {
+    formRow.style.display = 'block';
+  }
 
   // Show the save button
   if (saveButton.style.display === 'none') {
     saveButton.style.display = 'block';
   }
   
-  // Show the input form
-  if (newForm.style.display === 'none') {
-    newForm.style.display = 'block';
-  }
+  // // Show the input form
+  // if (newForm.style.display === 'none') {
+  //   newForm.style.display = 'block';
+  // }
 
   // Update table after form submission
   // Hide save button and form after submission

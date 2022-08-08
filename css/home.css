@@ -1,1 +1,41 @@
 
+.header {
+    color: green;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.subHeader {
+    color: green;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.buttonClass {
+    color: green;
+    margin-left: 25px;
+    margin-right: 25px; 
+}
+
+.mainTable {
+    color: green;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 100%;
+}
+
+th, td {
+    color: green;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    margin-right: 25px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
