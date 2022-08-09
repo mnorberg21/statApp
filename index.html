@@ -24,12 +24,12 @@
         <table id = "data" class = "mainTable">
             <thead>
                 <tr>
-                    <th scope = "col"> Date </th>
-                    <th scope = "col"> Course </th>
-                    <th scope = "col"> Score </th>
-                    <th scope = "col"> Fairways </th>
-                    <th scope = "col"> Greens in Regulation </th>
-                    <th scope = "col"> 3+ Putts </th>
+                    <th> Date </th>
+                    <th> Course </th>
+                    <th> Score </th>
+                    <th> Fairways </th>
+                    <th> Greens in Regulation </th>
+                    <th> 3+ Putts </th>
                 </tr>
             </thead>
             <tr>
@@ -40,27 +40,16 @@
                 <td> 14 </td>
                 <td> 0 </td>
             </tr>
-            <tr id = "formRow">
-                <form id="inputData">
-                    <td><input type = "text" id = "date" placeholder = "Enter date:"/></td>
-                    <td><input type = "text" id = "score" placeholder = "Enter score:"/></td>
-                    <td><input type = "text" id = "fairways" placeholder = "Enter fairways:"/></td>
-                    <td><input type = "text" id = "greens" placeholder = "Enter greens in regulation:"/></td>
-                    <td><input type = "text" id = "greens" placeholder = "Enter greens in regulation:"/></td>
-                    <td><input type = "text" id = "threePutts" placeholder = "Enter 3+ putts:"/></td>
-                </form>
+            <tr id = "formRow" style = "display:none">
+                <td><input type = "text" id = "date" placeholder = "Enter date:"/></td>
+                <td><input type = "text" id = "course" placeholder = "Enter course:"/></td>
+                <td><input type = "text" id = "score" placeholder = "Enter score:"/></td>
+                <td><input type = "text" id = "fairways" placeholder = "Enter fairways:"/></td>
+                <td><input type = "text" id = "greens" placeholder = "Enter greens in regulation:"/></td>
+                <td><input type = "text" id = "threePutts" placeholder = "Enter 3+ putts:"/></td>
             </tr>
         </table>
-    
-        <!-- <form id="inputData" style = 'display:none'>
-            <input type = "text" id = "date" placeholder = "Enter date:"/>
-            <input type = "text" id = "course" placeholder = "Enter course:"/>
-            <input type = "text" id = "score" placeholder = "Enter score:"/>
-            <input type = "text" id = "fairways" placeholder = "Enter fairways:"/>
-            <input type = "text" id = "greens" placeholder = "Enter greens in regulation:"/>
-            <input type = "text" id = "threePutts" placeholder = "Enter 3+ putts:"/>
-        </form> -->
-        
+
         <button id="save" class = "buttonClass" style = "display:none; margin-top: 20px;">Save Changes</button>
     </div>
 

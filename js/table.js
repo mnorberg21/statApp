@@ -1,20 +1,32 @@
 
 const NUM_ROWS = 6;
 
-const addBtn = document.getElementById('addScore');
+window.onload = () => {
+  const formRow = document.getElementById('formRow');
+  formRow.style.display = "none";
 
-const inputWrapper = () => {
   const saveButton = document.getElementById('save');
-  const newForm = document.getElementById('inputData');
-  handleInput(saveButton, newForm)
-};
+  saveButton.style.display = "none";
 
-const handleInput = (saveButton, newForm) => {
+  const addBtn = document.getElementById('addScore');
+  addBtn.addEventListener('click', () => {
+    // Show the form row
+    if (formRow.style.display === 'none') {
+      formRow.style.display = 'table-row';
+    }
+
+    // Show the save button
+    if (saveButton.style.display === 'none') {
+      saveButton.style.display = 'block';
+    }
+  });
+
+  saveButton.addEventListener('click', () => {
     // Get a reference to the table
     const tableRef = document.getElementById('data');
-    
+        
     // Insert a row at the end of the table
-    let newRow = tableRef.insertRow();
+    let newRow = tableRef.insertRow(tableRef.rows.length - 1);
 
     const formMapping = {
       0: 'date',
@@ -32,38 +44,7 @@ const handleInput = (saveButton, newForm) => {
       document.getElementById(formMapping[i]).value = null;
     }
 
-    // Hide form and button
-    if (saveButton.style.display === 'block') {
-      saveButton.style.display = 'none';
-      newForm.style.display = 'none';
-    }
-
-    // Remove event listener
-    saveButton.removeEventListener('click', inputWrapper);
+    saveButton.style.display = 'none';
+    formRow.style.display = 'none';
+  });
 };
-
-addBtn.addEventListener('click', () => {
-  // Collect references to HTML features
-  const saveButton = document.getElementById('save');
-  // const newForm = document.getElementById('inputData');
-  const formRow = document.getElementById('formRow');
-
-  // Show the form row
-  if (formRow.style.display === 'none') {
-    formRow.style.display = 'block';
-  }
-
-  // Show the save button
-  if (saveButton.style.display === 'none') {
-    saveButton.style.display = 'block';
-  }
-  
-  // // Show the input form
-  // if (newForm.style.display === 'none') {
-  //   newForm.style.display = 'block';
-  // }
-
-  // Update table after form submission
-  // Hide save button and form after submission
-  saveButton.addEventListener('click', inputWrapper);
-});
