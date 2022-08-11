@@ -1,7 +1,17 @@
 
 const NUM_ROWS = 6;
 
+const API_BASE = "http://172.17.0.3:5001/helloworld";
+
 window.onload = () => {
+  fetch('http://127.0.0.1:5001/helloworld').then(res => {
+    return res.json();
+  }).then(text => {
+    console.log('GET response:');
+    console.log(text);
+    console.log(text.greeting);
+  });
+
   const formRow = document.getElementById('formRow');
   formRow.style.display = "none";
 

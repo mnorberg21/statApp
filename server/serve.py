@@ -1,12 +1,14 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api, Resource
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 class HelloWorld(Resource):
     def get(self):
-        return {"data": "Hello World"}
+        return {'greeting': 'Hello World'}
 
 api.add_resource(HelloWorld, "/helloworld")
 
