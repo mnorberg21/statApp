@@ -1,0 +1,9 @@
+
+1) Set up flask app backend
+2) Docker-compose
+3) Connect to backend via frontend
+4) Set up database
+5) Connect to database via backend
+6) Implement persistent storage
+7) Github repo
+
