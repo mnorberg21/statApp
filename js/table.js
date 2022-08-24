@@ -16,21 +16,23 @@ window.onload = () => {
     1: 'course',
     2: 'score',
     3: 'fairways',
-    4: 'greens',
-    5: 'threePutts'
+    4: 'gir',
+    5: 'threep'
   };
+
+  let numRows = -1;
 
   // Initialize table
   fetch('http://127.0.0.1:5001/rest').then(res => {
     return res.json();
   }).then(text => {
-    console.log('GET Initialization Response:');
-    console.log(text);
-    for (let i = 0; i < text.length; i++) {
+    console.log('GET Initialization Response:', text);
+    numRows = text.count;
+    for (let i = 0; i < text.count; i++) {
       let newRow = tableRef.insertRow(tableRef.rows.length - 1);
       for (let j = 0; j < NUM_COLS; j++) {     
         let newCell = newRow.insertCell(j);
-        newCell.innerHTML = (text[i])[formMapping[j]];
+        newCell.innerHTML = (text.stats[i])[formMapping[j]];
       }
     }
   });
@@ -63,6 +65,10 @@ window.onload = () => {
       document.getElementById(formMapping[i]).value = null;
     }
 
+    // Add id to object
+    addObj['id'] = numRows;
+    numRows += 1;
+
     // Post request options
     let options = {
       method: 'POST',
@@ -76,8 +82,7 @@ window.onload = () => {
     fetch('http://127.0.0.1:5001/rest', options).then(res => {
       return res.json();
     }).then(text => {
-      console.log('POST Operation Status');
-      console.log(text);
+      console.log('POST Operation Status', text);
     });
 
     saveButton.style.display = 'none';

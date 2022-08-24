@@ -2,7 +2,6 @@
 1) Docker-compose & Dockerfiles
 2) Shell script to start project
 3) Add readme
-4) Connect to database via backend
 5) Github repo
 
 docker run -d \

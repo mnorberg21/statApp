@@ -42,7 +42,7 @@ class scoreModel(db.Model):
         self.threep = threep
     
     def __repr__(self):
-        return f"<Course {self.course}>"
+        return f"<Course {self.id}>"
 
 class HelloWorld(Resource):
     def get(self):
@@ -58,29 +58,40 @@ class HelloWorld(Resource):
             } for stat in stats]
         return {"count": len(results), "stats": results, "message":"success"}
 
-class Stats(Resource):
-    def get(self):
-        return {'total': df.shape[0]}
-
 rest_parser = reqparse.RequestParser()
+rest_parser.add_argument('id', type=int)
 rest_parser.add_argument('date', type=str)
 rest_parser.add_argument('course', type=str)
 rest_parser.add_argument('score', type=str)
 rest_parser.add_argument('fairways', type=str)
-rest_parser.add_argument('greens', type=str)
-rest_parser.add_argument('threePutts', type=str)
+rest_parser.add_argument('gir', type=str)
+rest_parser.add_argument('threep', type=str)
 
 class Rest(Resource):
     def get(self):
-        return df.to_dict(orient = 'records')
+        stats = scoreModel.query.all()
+        results = [
+            {
+                "date": stat.date.strftime("%m/%d/%Y"),
+                "course": stat.course,
+                "score": stat.score,
+                "fairways": stat.fairways,
+                "gir": stat.gir,
+                "threep": stat.threep
+            } for stat in stats]
+        return {"count": len(results), "stats": results, "message":"success"}
     
     def post(self):
         args = rest_parser.parse_args()
-        df.loc[len(df.index)] = args
+        new_stat = scoreModel(date = args['date'], course = args['course'], score = args['score'], fairways = args['fairways'], gir = args['gir'], threep = args['threep'])
+        print('TEST')
+        print(new_stat)
+        new_stat.id = args['id']
+        db.session.add(new_stat)
+        db.session.commit()
         return {'status': 'data item posted'}
 
 api.add_resource(HelloWorld, "/helloworld")
-api.add_resource(Stats, "/stats")
 api.add_resource(Rest, "/rest")
 
 if __name__ == "__main__":
