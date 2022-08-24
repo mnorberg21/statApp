@@ -1,9 +1,15 @@
 import pandas as pd
+from json import dumps
 from flask import Flask
 from flask_cors import CORS
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mnpwd@172.17.0.4:5432/'
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 api = Api(app)
 CORS(app)
 
@@ -16,9 +22,41 @@ df = pd.DataFrame({
     'threePutts': ['0', '1'],
 })
 
+class scoreModel(db.Model):
+    __tablename__ = 'stats'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date())
+    course = db.Column(db.String())
+    score = db.Column(db.Integer())
+    fairways = db.Column(db.Integer())
+    gir = db.Column(db.Integer())
+    threep = db.Column(db.Integer())
+
+    def __init__(self, date, course, score, fairways, gir, threep):
+        self.date = date
+        self.course = course
+        self.score = score
+        self.fairways = fairways
+        self.gir = gir
+        self.threep = threep
+    
+    def __repr__(self):
+        return f"<Course {self.course}>"
+
 class HelloWorld(Resource):
     def get(self):
-        return {'greeting': 'Hello World'}
+        stats = scoreModel.query.all()
+        results = [
+            {
+                "date": stat.date.strftime("%m/%d/%Y"),
+                "course": stat.course,
+                "score": stat.score,
+                "fairways": stat.fairways,
+                "gir": stat.gir,
+                "threep": stat.threep
+            } for stat in stats]
+        return {"count": len(results), "stats": results, "message":"success"}
 
 class Stats(Resource):
     def get(self):

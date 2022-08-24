@@ -1,5 +1,13 @@
 
-2) Docker-compose
-4) Set up database
-5) Connect to database via backend
-7) Github repo
+1) Docker-compose & Dockerfiles
+2) Shell script to start project
+3) Add readme
+4) Connect to database via backend
+5) Github repo
+
+docker run -d \
+    --name postgresDB \
+    -e POSTGRES_PASSWORD=mnpwd \
+    -v database:/var/lib/postgresql/data \
+    -p 5432:5432 \
+    postgres:alpine3.16
