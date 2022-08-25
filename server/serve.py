@@ -1,4 +1,4 @@
-import pandas as pd
+
 from json import dumps
 from flask import Flask
 from flask_cors import CORS
@@ -7,20 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mnpwd@172.17.0.4:5432/'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mnpwd@172.17.0.2:5432/'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
 CORS(app)
-
-df = pd.DataFrame({
-    'date': ['8/5/2022', '8/6/2022'],
-    'course': ['Winchester Country Club', 'Eastward Ho!'],
-    'score': ['75', '77'],
-    'fairways': ['11', '15'],
-    'greens': ['14', '12'],
-    'threePutts': ['0', '1'],
-})
 
 class scoreModel(db.Model):
     __tablename__ = 'stats'

@@ -1,8 +1,7 @@
 
-1) Docker-compose & Dockerfiles
+1) Docker-compose
 2) Shell script to start project
 3) Add readme
-5) Github repo
 
 docker run -d \
     --name postgresDB \
