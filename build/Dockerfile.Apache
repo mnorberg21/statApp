@@ -1,0 +1,9 @@
+
+FROM httpd:2.4
+
+WORKDIR /usr/local/apache2/htdocs/
+
+# Copy over front end files
+# COPY ../frontend/index.html /usr/local/apache2/htdocs/
+# COPY ../frontend/js /usr/local/apache2/htdocs/js/
+# COPY ../frontend/css /usr/local/apache2/htdocs/css/
