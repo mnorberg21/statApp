@@ -7,6 +7,10 @@ services:
       dockerfile: Apache
     ports:
       - "8080:80"
+    volumes:
+      - ./js:/usr/local/apache2/htdocs/js/
+      - ./css:/usr/local/apache2/htdocs/css/
+      - ./index.html:/usr/local/apache2/htdocs/index.html
   backend:
     build:
       context: .
@@ -15,6 +19,8 @@ services:
       - "5001:5001"
     depends_on:
       - db
+    volumes:
+      - ./server:/home/project/server/
   db:
     image: postgres:alpine3.16
     ports: 

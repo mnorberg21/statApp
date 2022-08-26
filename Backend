@@ -3,9 +3,9 @@ FROM alpine:3.16
 
 WORKDIR /home/project
 
-COPY server/serve.py .
+# COPY server/serve.py .
 COPY requirements.txt requirements.txt
-COPY entry.sh entry.sh
+COPY entry.sh /home/project/entry.sh
 
 RUN apk update && apk upgrade --available; \
     apk add --update python3; \
@@ -17,6 +17,6 @@ RUN apk update && apk upgrade --available; \
 
 RUN pip install -r requirements.txt
 
-ENV FLASK_APP=serve.py
+ENV FLASK_APP=server/serve.py
 
-ENTRYPOINT ["/bin/bash", "entry.sh"]
+ENTRYPOINT ["/bin/bash", "/home/project/entry.sh"]
