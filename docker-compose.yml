@@ -3,31 +3,33 @@ version: "3.9"
 services:
   server:
     build: 
-      context: .
-      dockerfile: Apache
+      context: ./build
+      dockerfile: Dockerfile.Apache
     ports:
       - "8080:80"
     volumes:
-      - ./js:/usr/local/apache2/htdocs/js/
-      - ./css:/usr/local/apache2/htdocs/css/
-      - ./index.html:/usr/local/apache2/htdocs/index.html
+      - ./frontend/css:/usr/local/apache2/htdocs/css/
+      - ./frontend/html:/usr/local/apache2/htdocs/html/
+      - ./frontend/images:/usr/local/apache2/htdocs/html/
+      - ./frontend/js:/usr/local/apache2/htdocs/js/
+      - ./frontend/index.html:/usr/local/apache2/htdocs/index.html
   backend:
     build:
-      context: .
-      dockerfile: Backend
+      context: ./build
+      dockerfile: Dockerfile.Backend
     ports:
       - "5001:5001"
     depends_on:
       - db
     volumes:
-      - ./server:/home/project/server/
+      - ./backend:/home/project/backend/
   db:
     image: postgres:alpine3.16
     ports: 
       - "5432:5432"
     volumes:
       - dbtest:/var/lib/postgresql/data
-      - ./createDB.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./build/createDB.sql:/docker-entrypoint-initdb.d/create_tables.sql
     environment:
       - POSTGRES_PASSWORD=mnpwd
 volumes:

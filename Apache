@@ -1,8 +1,0 @@
-
-# Set base image
-FROM httpd:2.4
-
-# Copy over front end files
-# COPY index.html /usr/local/apache2/htdocs/
-# COPY js /usr/local/apache2/htdocs/js/
-# COPY css /usr/local/apache2/htdocs/css/

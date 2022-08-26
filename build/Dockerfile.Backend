@@ -17,6 +17,6 @@ RUN apk update && apk upgrade --available; \
 
 RUN pip install -r requirements.txt
 
-ENV FLASK_APP=server/serve.py
+ENV FLASK_APP=backend/serve.py
 
 ENTRYPOINT ["/bin/bash", "/home/project/entry.sh"]
