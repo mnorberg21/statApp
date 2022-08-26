@@ -1,4 +1,5 @@
 
+import os
 from json import dumps
 from flask import Flask
 from flask_cors import CORS
@@ -7,7 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mnpwd@172.17.0.2:5432/'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mnpwd@db:5432/'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)

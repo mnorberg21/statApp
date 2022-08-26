@@ -9,3 +9,6 @@ docker run -d \
     -v database:/var/lib/postgresql/data \
     -p 5432:5432 \
     postgres:alpine3.16
+
+brew install coreutils
+chmod 755 wait-for-it.sh

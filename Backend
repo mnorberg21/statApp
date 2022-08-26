@@ -3,22 +3,20 @@ FROM alpine:3.16
 
 WORKDIR /home/project
 
-COPY server .
+COPY server/serve.py .
 COPY requirements.txt requirements.txt
+COPY entry.sh entry.sh
 
 RUN apk update && apk upgrade --available; \
     apk add --update python3; \
     apk add py3-pip; \
     apk add make automake gcc g++ subversion; \
     apk add --upgrade python3-dev; \
-    apk add --upgrade libpq-dev;
+    apk add --upgrade libpq-dev; \
+    apk add bash;
 
 RUN pip install -r requirements.txt
 
 ENV FLASK_APP=serve.py
 
-RUN flask db init; \
-    flask db migrate; \
-    flask db upgrade;
-
-CMD ["python", "-u", "serve.py"]
+ENTRYPOINT ["/bin/bash", "entry.sh"]
